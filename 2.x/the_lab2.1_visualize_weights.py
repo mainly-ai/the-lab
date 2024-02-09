@@ -1,5 +1,5 @@
 from mirmod.workflow_object import WOB
-wob = WOB(name="the_lab2_visualize_weights")
+wob = WOB(name="the_lab2.1_visualize_weights")
 prefab_description = """
 """
 prefab_labels=["The Lab"]
