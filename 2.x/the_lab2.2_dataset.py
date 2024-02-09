@@ -15,12 +15,17 @@ DATA_RS, MODEL_RS = 100,100
 @wob.init()
 def init(self):
   self.value = None
+  self.df = None
   self.x_train = None
   self.x_val = None
   self.x_test = None
   self.y_train = None
   self.y_val = None
   self.y_test = None
+
+@wob.transmitter("dataframe", "Dataset")
+def transmit_df(self):
+  return self.df
 
 @wob.transmitter("dataframe", "x_train")
 def transmit_x_train(self):
@@ -77,6 +82,8 @@ def execute(self):
       return x_new
 
   x_new = deobjectify_df(X=df[features])
+
+  self.df = df
 
   def get_train_val_test(X,y):
       x_train, x_int, y_train, y_int = train_test_split(X,y, random_state=DATA_RS,test_size=0.5)

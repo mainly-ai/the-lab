@@ -13,7 +13,8 @@ import json
 import pandas as pd
 
 def generate_lin_reg_model_weights(model, model_name="Logistic Model"):
-    df_coef = pd.DataFrame({"Feature Weight": model.coef_, "Classes": model.feature_names_in_})
+    sorted_idx = model.coef_.argsort()
+    df_coef = pd.DataFrame({"Feature Weight": model.coef_[sorted_idx], "Classes": model.feature_names_in_[sorted_idx]})
     fig = px.bar(df_coef, x="Classes", y=df_coef["Feature Weight"], title="Wide-Form Input", height=1000)
     fig.update_layout(
             font=dict(
