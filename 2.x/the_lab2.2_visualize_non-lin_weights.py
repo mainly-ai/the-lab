@@ -27,7 +27,7 @@ def generate_non_linear_reg_model_weights(model,x_val, y_val):
         df_coef = pd.DataFrame({"Feature Weight": model.feature_importances_[sorted_idx], "Classes": model.feature_names_in_[sorted_idx]})
         model_name = "Gradient Boosting"
     elif type(model) == SVR:
-        perm_imp = permutation_importance(model, x_val, y_val, n_repeats=100)
+        perm_imp = permutation_importance(model, x_val, y_val, n_repeats=30)
         feature_names = x_val.columns
         feature_names = np.array(feature_names)
         sorted_idx = perm_imp.importances_mean.argsort()
